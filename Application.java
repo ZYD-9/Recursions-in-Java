@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class Application {
 
@@ -27,6 +28,7 @@ public class Application {
 	private JTextField tfEuclidean_1;
 	private JTextField tfCollatz;
 	private JTextField tfEuclidean_2;
+	private JTextField pascal_textField;
 
 	/**
 	 * Launch the application.
@@ -56,13 +58,13 @@ public class Application {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(0, 0, 483, 451);
+		frame.setBounds(0, 0, 483, 578);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 0, 433, 404);
+		layeredPane.setBounds(0, 0, 433, 531);
 		frame.getContentPane().add(layeredPane);
 		CardLayout cardLayout = new CardLayout(0,0);
 		layeredPane.setLayout(cardLayout);
@@ -142,9 +144,18 @@ public class Application {
 				cardLayout.show(layeredPane, "Euclidean");
 			}
 		});
+		
 		btnEuclidean.setBounds(84, 279, 236, 22);
 		panelHome.add(btnEuclidean);
 		
+		Button btnPascal = new Button("Pascal Triangle");
+		btnPascal.setBounds(84, 307, 236, 22);
+		btnPascal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(layeredPane, "Pascal");
+			}
+		});
+		panelHome.add(btnPascal);
 		JPanel panelFibonacci = new JPanel();
 		layeredPane.add(panelFibonacci, "Fibonacci");
 		panelFibonacci.setLayout(null);
@@ -418,6 +429,7 @@ public class Application {
 				cardLayout.show(layeredPane, "1");
 			}
 		});
+		
 		btnBackCollatz.setBounds(10, 11, 89, 23);
 		panelCollatz.add(btnBackCollatz);
 		
@@ -525,6 +537,99 @@ public class Application {
 		tfEuclidean_2.setColumns(10);
 		tfEuclidean_2.setBounds(106, 199, 72, 20);
 		panelEuclidean.add(tfEuclidean_2);
+		
+		JPanel panelPascal = new JPanel();
+		layeredPane.add(panelPascal, "panelPascal");
+		panelPascal.setLayout(null);
+		
+		JLabel lblPascalTriangleGenerator = new JLabel("PASCAL TRIANGLE GENERATOR");
+		lblPascalTriangleGenerator.setBounds(16, 43, 281, 17);
+		lblPascalTriangleGenerator.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panelPascal.add(lblPascalTriangleGenerator);
+		
+		
+		
+		JButton btnBackPascal = new JButton("Back");
+		btnBackPascal.setBounds(16, 10, 89, 23);
+		panelPascal.add(btnBackPascal);
+		
+		JLabel Pascal_def1 = new JLabel("is an arrangement of numbers in a triangular array such that");
+		Pascal_def1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		Pascal_def1.setBounds(16, 70, 366, 23);
+		panelPascal.add(Pascal_def1);
+		
+		JLabel Pascal_def2 = new JLabel("the numbers at the end of each row are 1 and the remaining");
+		Pascal_def2.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		Pascal_def2.setBounds(16, 92, 366, 23);
+		panelPascal.add(Pascal_def2);
+		
+		JLabel Pascal_def3 = new JLabel("numbers are the sum of the nearest two numbers in the above row.");
+		Pascal_def3.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		Pascal_def3.setBounds(16, 119, 366, 23);
+		panelPascal.add(Pascal_def3);
+		
+		JLabel Pascal_bg1 = new JLabel("The elements of the nth row of Pascal's triangle");
+		Pascal_bg1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		Pascal_bg1.setBounds(16, 143, 366, 23);
+		panelPascal.add(Pascal_bg1);
+		
+		JLabel Pascal_bg2 = new JLabel("are given by, nC0, nC1, nC2, ..., nCn.");
+		Pascal_bg2.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		Pascal_bg2.setBounds(16, 168, 366, 23);
+		panelPascal.add(Pascal_bg2);
+		
+		JLabel pascalText_formula = new JLabel("Formula");
+		pascalText_formula.setFont(new Font("Tahoma", Font.BOLD, 14));
+		pascalText_formula.setBounds(16, 201, 281, 17);
+		panelPascal.add(pascalText_formula);
+		
+		JLabel pascalFormula = new JLabel("nCm = n-1Cm-1 + n-1Cm");
+		pascalFormula.setFont(new Font("Tahoma", Font.BOLD, 14));
+		pascalFormula.setBounds(16, 223, 281, 17);
+		panelPascal.add(pascalFormula);
+		
+		JLabel pascalMeaning1 = new JLabel("nCm represents the (m+1)th element in the nth row.");
+		pascalMeaning1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		pascalMeaning1.setBounds(16, 246, 366, 23);
+		panelPascal.add(pascalMeaning1);
+		
+		JLabel pascalMeaning2 = new JLabel("n is a non-negative integer, and");
+		pascalMeaning2.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		pascalMeaning2.setBounds(16, 268, 366, 23);
+		panelPascal.add(pascalMeaning2);
+		
+		JLabel pascalMeaning3 = new JLabel("0 ≤ m ≤ n");
+		pascalMeaning3.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		pascalMeaning3.setBounds(16, 289, 366, 23);
+		panelPascal.add(pascalMeaning3);
+		
+		JButton btnGenerate_Pascal = new JButton("Generate");
+		btnGenerate_Pascal.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnGenerate_Pascal.setBounds(212, 322, 85, 32);
+		panelPascal.add(btnGenerate_Pascal);
+		
+		pascal_textField = new JTextField();
+		pascal_textField.setColumns(10);
+		pascal_textField.setBounds(16, 322, 188, 32);
+		panelPascal.add(pascal_textField);
+		
+		JButton btnClear_Pascal = new JButton("Clear");
+		btnClear_Pascal.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnClear_Pascal.setBounds(307, 322, 85, 32);
+		panelPascal.add(btnClear_Pascal);
+		
+		JScrollPane scrollPascal = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPascal.setBounds(16, 364, 328, 146);
+		panelPascal.add(scrollPascal);
+		
+		JTextArea textArea_Pascal = new JTextArea();
+		textArea_Pascal.setWrapStyleWord(true);
+		textArea_Pascal.setLineWrap(true);
+		textArea_Pascal.setEditable(true);
+		textArea_Pascal.setBounds(new Rectangle(0, 0, 415, 243));
+		scrollPascal.setViewportView(textArea_Pascal);
+		
+		
 
 		/* Clear-Button section */
 
@@ -627,8 +732,8 @@ public class Application {
 			}
 		});
 
-		btnGenerateCollatz.addActionListener(new ActionListener() {     // add here 
-			public void actionPerformed(ActionEvent e) {                // remember me 
+		btnGenerateCollatz.addActionListener(new ActionListener() {     
+			public void actionPerformed(ActionEvent e) {               
 				String input = tfCollatz.getText().toString();
 				String result = "";
 				if (Integer.parseInt(input)<1){
@@ -660,14 +765,35 @@ public class Application {
 
 				  textArea_Euclidean.setText(result);
 
-
-
 			}
 		});
+	
+	
+	btnGenerate_Pascal.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed (ActionEvent e) {
+			String input = pascal_textField.getText().toString();
+			String displayResult = "";
+
+
+			if(Integer.parseInt(input)<1){
+				displayResult = "Input must be a positive integer";
+
+			}
+			else {
+				displayResult = generateTriangle(Integer.parseInt(input)); // find here later
+
+			}
+
+			textArea_Pascal.setText(displayResult);
+		}
+		
+	});
+	
+	
 	}
 
-
-	//	Euclidean
+	
 
 
 
@@ -740,6 +866,38 @@ public class Application {
             return false;
         }
     }
-
+    
+    public static String generateTriangle(int rows) {
+    	StringBuilder triangleBuilder = new StringBuilder();
+    	
+    	int pascalArray[][] = new int[rows][rows];
+    	
+    	for(int i = 0;i<rows;i++) {
+    		pascalArray[i][0] = 1;
+    	}
+    for(int i = 1;i<rows;i++) {
+    	pascalArray[i][i] = 1;
+    }
+    
+    for(int i = 2;i<rows;i++) {
+    	for(int j = 1;j<i;j++) {
+    		pascalArray[i][j] = pascalArray[i-1][j-1] + pascalArray[i-1][j];
+    	}
+    }
+    
+    for(int i =0;i<=rows;i++) {
+    	for(int k = 0;k<rows;k++) {
+    		triangleBuilder.append(" ");
+    	}
+    
+    
+    for(int j = 0;j<=i;j++) {
+    	triangleBuilder.append(pascalArray[i][j]).append(" ");
+    	}
+    triangleBuilder.append("\n");
+    		
+    }
+    return triangleBuilder.toString();
 
 }
+    }
