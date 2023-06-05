@@ -429,6 +429,8 @@ public class Application {
 				cardLayout.show(layeredPane, "1");
 			}
 		});
+
+
 		
 		btnBackCollatz.setBounds(10, 11, 89, 23);
 		panelCollatz.add(btnBackCollatz);
@@ -539,7 +541,7 @@ public class Application {
 		panelEuclidean.add(tfEuclidean_2);
 		
 		JPanel panelPascal = new JPanel();
-		layeredPane.add(panelPascal, "panelPascal");
+		layeredPane.add(panelPascal, "Pascal");
 		panelPascal.setLayout(null);
 		
 		JLabel lblPascalTriangleGenerator = new JLabel("PASCAL TRIANGLE GENERATOR");
@@ -618,17 +620,22 @@ public class Application {
 		btnClear_Pascal.setBounds(307, 322, 85, 32);
 		panelPascal.add(btnClear_Pascal);
 		
-		JScrollPane scrollPascal = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane scrollPascal = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPascal.setBounds(16, 364, 328, 146);
 		panelPascal.add(scrollPascal);
 		
 		JTextArea textArea_Pascal = new JTextArea();
-		textArea_Pascal.setWrapStyleWord(true);
-		textArea_Pascal.setLineWrap(true);
+		textArea_Pascal.setWrapStyleWord(false);
+		textArea_Pascal.setLineWrap(false);
 		textArea_Pascal.setEditable(true);
 		textArea_Pascal.setBounds(new Rectangle(0, 0, 415, 243));
 		scrollPascal.setViewportView(textArea_Pascal);
-		
+
+		btnBackPascal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(layeredPane, "1");
+			}
+		});
 		
 
 		/* Clear-Button section */
@@ -662,6 +669,13 @@ public class Application {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				textArea_Euclidean.setText("");
+			}
+		});
+
+		btnClear_Pascal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) { textArea_Pascal.setText("");
+
 			}
 		});
 
@@ -885,13 +899,13 @@ public class Application {
     	}
     }
     
-    for(int i =0;i<=rows;i++) {
-    	for(int k = 0;k<rows;k++) {
+    for(int i =0;i<rows;i++) {
+    	for(int k = 0;k<rows-i;k++) {
     		triangleBuilder.append(" ");
     	}
     
     
-    for(int j = 0;j<=i;j++) {
+    for(int j = 0; j<=i;j++) {
     	triangleBuilder.append(pascalArray[i][j]).append(" ");
     	}
     triangleBuilder.append("\n");
